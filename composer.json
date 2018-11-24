@@ -30,7 +30,7 @@
     },
     "scripts": {
         "start": "php -S localhost:8080 -t public index.php",
-        "prod": "php -S 192.168.1.31:8080 -t public index.php",
+        "prod": "php -S 192.168.1.8:8080 -t public index.php",
         "test": "phpunit"
     }
 

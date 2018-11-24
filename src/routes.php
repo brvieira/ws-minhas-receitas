@@ -43,6 +43,25 @@ $app->get('/receitas/{id}', function ($request, $response, $args) {
     }
 });
 
+//Este endpoint retorna todas as receitas cadastradas no banco de dados, ordenando por id.
+$app->get('/categorias/receitas/{id}', function ($request, $response, $args) {
+    $db = $this->db;
+    $id[] = $args['id'];
+    $sth = $db->prepare('SELECT * FROM receitas WHERE categoria_id = ? ORDER BY id');
+    $retorno = [];
+    try {
+        $sth->execute($id);
+        while ($linha = $sth->fetch()) {
+            $retorno[] = $linha;
+        }
+    } catch (PDOException $e) {
+        $retorno['erro'] = $e;
+        $retorno['message'] = 'Erro na comunicação!';
+    } finally {
+        return $response->withJson($retorno);
+    }
+});
+
 // Este endpoint é responsável por receber dados de uma receita e insere no banco de dados.
 $app->post('/receitas', function ($request, $response) {
     $receita = $request->getParsedBody();
