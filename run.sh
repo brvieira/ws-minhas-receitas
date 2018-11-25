@@ -2,9 +2,7 @@
 
 echo "Iniciando API ws-minhas-receitas..."
 
-ipAddress=$(echo `hostname -I`)
-
-echo "Endereço IP: $ipAddress"
+read -p "Informe o IP que deseja utilizar: " ipAddress
 
 read -p "Informe a porta que deseja utilizar: " port
 
